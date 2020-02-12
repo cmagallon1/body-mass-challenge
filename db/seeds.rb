@@ -6,10 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #
-user = { name: "cesar", username: "cmagallon",  password: "12345678" }
-
-User.create(user)
-
 body_mass = [
   { category: "Very severely underweight", min: nil, max: 15 },
   { category: "Severely underweight", min: 15, max: 16 },
