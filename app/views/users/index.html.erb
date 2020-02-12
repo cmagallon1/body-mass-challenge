@@ -1,0 +1,29 @@
+<h1><center>Body weight platform</center></h1>
+
+<div style="width: 100%; justify-content:center; text-align:center">
+  <%= form_with scope: :user, url: "/signin", local: true do |form|%>
+    <h2>Sing in to use this app</h2>
+
+    <p>
+      <%= form.label :username %><br>
+      <%= form.text_field :username %>
+    </p>
+
+    <p>
+      <%= form.label :password %><br>
+      <%= form.text_field :password %>
+    </p>
+
+    <%= form.submit :"sign in" %><br>
+
+  <% end %>
+
+  <p>
+    <label>If you don't have an account</label><br>
+  </p>
+
+  <%= link_to "sign up here", new_user_path %>
+</div     
+
+  
+
