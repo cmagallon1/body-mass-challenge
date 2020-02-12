@@ -34,10 +34,6 @@ class UsersController < ApplicationController
     destroy
   end
 
-  def menu
-    @body_mass = BodyMass.new
-  end
-
   def category
     @height = body_mass_params[:height]
     @weight = body_mass_params[:weight]

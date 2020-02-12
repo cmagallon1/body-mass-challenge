@@ -5,7 +5,7 @@
     
     <label>Please write your weight and height to calculate your BMI </label>
 
-    <%= form_with model: @body_mass, url: "/category", local: true do |form| %>
+    <%= form_with scope: :body_mass, url: "/category", local: true do |form| %>
       <div>
         <%= form.text_field :height, placeholder: "height", value: @height %>
         <%= form.text_field :weight, placeholder: "weight", value: @weight %>
