@@ -1,0 +1,27 @@
+<div style="width:100%; text-align: center; justify-content: center">
+  <% if logged_in? %>
+      
+    <h1>BMI calculator</h1>
+    
+    <label>Please write your weight and height to calculate your BMI </label>
+
+    <%= form_with scope: :body_mass, url: body_mass_categories_url, local: true do |form| %>
+      <div>
+        <%= form.text_field :height, placeholder: "height", value: @height %>
+        <%= form.text_field :weight, placeholder: "weight", value: @weight %>
+
+        <br>
+
+        <%= form.submit :calculate %>
+
+        <%= link_to 'log out', '/logout', method: "delete" %>
+
+
+      </div>
+    <% end %>
+
+    <label><%= @category %></label>
+  <% else %>
+    <h1>You must be logged to use this app</h1>
+  <% end %>
+</div>
