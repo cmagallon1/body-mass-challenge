@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :users
   resources :body_mass_categories
   
+  get '*missing', to: 'users#index'
+
   get '/signin', to: 'users#index'
 
   get '/category', to: 'body_mass_categories#index'
