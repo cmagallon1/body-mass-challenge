@@ -1,4 +1,13 @@
 <%= render "navbar" %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <% @user.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger" role="alert">
+          <%= msg %> 
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 <div class="container text-center mt-5">
   <h1 class"display-4">Sign up</h1>
 
@@ -9,12 +18,12 @@
    </div>
 
    <div>
-      <%= form.label :username %><br>
+      <%= form.label :username %>
       <span><%= form.text_field :username, class: "form-control" %></span>
     </div>
 
     <div>
-      <%= form.label :password %><br>
+      <%= form.label :password %>
       <span><%= form.password_field :password, class: "form-control" %></span>
     </div>
 
