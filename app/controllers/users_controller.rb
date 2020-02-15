@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       session[:current_user_id] = @user.id
       redirect_to body_mass_categories_path 
     else
-      render 'index'
+      redirect_to '/signin'
     end
   end
   
