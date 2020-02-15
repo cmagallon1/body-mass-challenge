@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create, :index, :signin, :menu] 
 
   def index
+    @user = User.new
   end
 
   def new
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
       session[:current_user_id] = @user.id
       redirect_to body_mass_categories_path 
     else
-      redirect_to '/signin'
+      render 'index'
     end
   end
   

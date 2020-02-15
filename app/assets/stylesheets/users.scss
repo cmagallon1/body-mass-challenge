@@ -2,14 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .sign-in-up-form {
-	width: 100%;
-	div {
-	        margin-bottom: 3%;
-		span {
-			display: flex;
-			justify-content: center;
-			.form-control {
-				width: 30%;
+	display: flex;
+	justify-content: center;
+	form {
+		width: 30%;
+		div {
+			width: 100%;
+			margin-bottom: 5%;
+			span {
+				display: flex;
+				justify-content: center;
+				.form-control {
+					width: 50%;
+				}
 			}
 		}
 	}

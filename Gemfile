@@ -12,9 +12,13 @@ gem 'pg', '~> 1.2', '>= 1.2.2'
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'bootstrap', '~> 4.4.1'
+
 gem 'jquery-rails'
+
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+
 gem 'webpacker', '~> 4.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
