@@ -1,25 +1,28 @@
   <%= render 'navbar' %>
 <div class="container text-center mt-5">
-  <h1 class="display-4">Body weight platform</h1>
-  <div class="sign-in-up-form">
-    <%= form_with scope: :user, url: "/signin", local: true do |form|%>
-      <h2 class="mb-3">sign in</h2>
-      <div>
-        <%= form.label :username %>
-        <%= form.text_field :username, class: "form-control" %>
-      </div>
-       <div>
-        <%= form.label :password %>
-        <%= form.password_field :password, class: "form-control" %>
-      </div>
+  <div class="row">
+    <div class="col-12">
+      <h1 class="display-4">Body weight platform</h1>
+      <div class="sign-in-up-form">
+        <%= form_with scope: :user, url: "/signin", local: true do |form|%>
+          <h2 class="mb-3">sign in</h2>
+          <div>
+            <%= form.label :username %>
+            <%= form.text_field :username, class: "form-control" %>
+          </div>
+          <div>
+            <%= form.label :password %>
+            <%= form.password_field :password, class: "form-control" %>
+          </div>
 
-      <%= form.submit :"sign in", class: "btn btn-outline-info " %>
-      <div class="pt-3">
-        <label>you don't have an account?</label><br>
-        <%= link_to "sign up here", new_user_path %>
+          <%= form.submit :"sign in", class: "btn btn-outline-info " %>
+          <div class="pt-3">
+            <label>you don't have an account?</label><br>
+            <%= link_to "sign up here", new_user_path %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
-  
 
