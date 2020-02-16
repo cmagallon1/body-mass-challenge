@@ -1,6 +1,12 @@
 <div class="result">
   <div class="alert alert-secondary mt-3" role="alert">
-    <%= @category %>
+    <% if @category == "You must insert valid values" %>
+        <%= @category %>
+    <% else %>
+      <label>Your BMI is: <%= @bmi.round(2) if @bmi %></label><br>
+      <label>And your category is: </label><br>
+      <%= @category %>
+    <% end %>
   </div>
 </div
 

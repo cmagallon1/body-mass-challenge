@@ -5,7 +5,7 @@
       
       <% if logged_in? %>
         <h1 class="display-4">BMI calculator</h1>
-        <h2 class="mt-3">Please write your weight and height to calculate your BMI </h2>
+        <h2 class="mt-3">Please write your weight and height to calculate your BMI</h2>
         <div class="body_mass_form container">
           <%= form_with scope: :body_mass, url: body_mass_categories_url do |form| %>
             <div class="fields">
