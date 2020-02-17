@@ -1,15 +1,12 @@
 require 'test_helper'
 require 'faker'
-require 'pry'
 
 class UserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
   def test_save_user
-    user = User.new({ name: Faker::Name.unique.name_with_middle, username: Faker::Name.unique.name, password_digest: Faker::Lorem.characters(number:10) })
-    assert user
-    Faker::Name.unique.clear
+    assert create(:user), "Can't save user"
   end
 
   def test_save_user_without_params
@@ -17,19 +14,30 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.save, "Saved the user without params"
   end
 
-  def test_save_user_with_under_limit_password
-    user = User.new({ name: Faker::Name.unique.name_with_middle, username: Faker::Name.unique.name, password_digest: Faker::Lorem.characters(number:4) })
-    assert_not user.save, "User saved with password under the limit"
-    Faker::Name.unique.clear
+  def test_save_user_with_username_under_limit
+    user = build(:user, username: Faker::Name.initials(number: 4))
+    assert_not user.save, "User saved with username under the limit"
   end
 
-  def test_save_user_already_registered
-    user = User.new({ name: Faker::Name.unique.name_with_middle, username: Faker::Name.unique.name, password_digest: Faker::Lorem.characters(number:10) })
-    second_user = User.new({ name: Faker::Name.unique.name_with_middle, username: user[:username], password_digest: Faker::Lorem.characters(number:10) })
-    assert user  
-    second_user = User.new({ name: Faker::Name.unique.name_with_middle, username: user[:username], password_digest: Faker::Lorem.characters(number:10) })
-    assert_not second_user.save
+  def test_save_user_with_username_more_than_limit
+    user = build(:user, username: Faker::Name.initials(number: 24))
+    assert_not user.save, "User saved with password more than the limit"
+  end
 
-    Faker::Name.unique.clear
+  def test_save_user_with_password_under_limit_password
+    user = build(:user, password: Faker::Lorem.characters(number: 4))
+    assert_not user.save, "User saved with password under the limit"
+  end
+
+  def test_save_user_with_password_more_than_limit
+    user = build(:user, password: Faker::Lorem.characters(number: 24))
+    assert_not user.save, "User saved with password more than the limit"
+  end
+
+  def test_save_user_with_same_username
+    user = build(:user)
+    user.save
+    second = build(:user, username: user[:username])
+    assert_not second.save, "User saved with username already used"
   end
 end

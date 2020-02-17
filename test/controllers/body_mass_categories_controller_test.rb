@@ -1,19 +1,23 @@
 require 'test_helper'
-
+require 'pry'
 class BodyMassCategoriesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
   #
   def test_should_calculate_bmi 
-
-    a = User.new
-    #a.build_profile(username: "cmagallon", password: "12345" )
-    post '/signin', params: { user:  { username: "cmagallon", password: "12345" } }
-
+    load_seed
+    post '/signin', params: { user: create_user } 
+    bmi = { weight: 70 , height: 190 }
+    post body_mass_categories_url, params: { body_mass: bmi }, xhr: true
     assert_redirected_to body_mass_categories_path
-
-    #post body_mass_categories_url, params: { body_mass: { height: Faker::Number.number(digits: 10), weight: Faker::Number.decimal(l_digits:10, r_digits:2) } }, xhr: true
-    #assert_redirected_to body_mass_categories_url
   end
+
+  private 
+    def create_user
+      user = attributes_for(:user)
+      User.new(user).save
+      return user
+    end
+
 end
