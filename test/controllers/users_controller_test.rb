@@ -12,11 +12,35 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   def test_should_create_user
     assert_difference("User.count") do 
-    post users_url, params: { user: { name: Faker::Name.unique.name_with_middle, username: Faker::Name.unique.name, password: Faker::Lorem.characters(number: 10)}}
-    Faker::UniqueGenerator.clear
+      post users_url, params: { user: attributes_for(:user) }
+      assert_response :success
     end
   end
-  
-  #Add test para login y logout
 
+  def test_user_should_sign_in_with_valid_data
+    user = create_user
+    post '/signin' , params: { user: user }
+    assert_redirected_to body_mass_categories_path
+  end
+
+  def test_user_should_not_sign_in_with_invalid_data
+    user = create_user
+    user[:password] = Faker::Lorem.characters(number: 10)
+    post '/signin' , params: { user: user }
+    assert_redirected_to '/signin'  
+  end
+
+  def test_user_should_log_out
+    delete '/logout'
+    assert_not is_logged_in?
+    assert_redirected_to '/signin' 
+  end
+  
+  private
+    def create_user 
+      user = attributes_for(:user) 
+      User.new(user).save
+      return user
+    end
+  
 end
