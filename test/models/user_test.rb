@@ -34,6 +34,21 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.save, "User saved with password more than the limit"
   end
 
+  def test_save_user_without_email
+    user = build(:user, email: "")
+    assert_not user.save, "User saved without email"
+  end
+  
+  def test_save_user_without_password
+    user = build(:user, password: "")
+    assert_not user.save, "User saved without email"
+  end
+  
+  def test_save_user_without_username
+    user = build(:user, username: "")
+    assert_not user.save, "User saved without email"
+  end
+
   def test_save_user_with_same_username
     user = build(:user)
     user.save
