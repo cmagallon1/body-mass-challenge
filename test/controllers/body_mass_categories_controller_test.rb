@@ -10,7 +10,7 @@ class BodyMassCategoriesControllerTest < ActionDispatch::IntegrationTest
     post '/signin', params: { user: create_user } 
     bmi = { weight: 70 , height: 190 }
     post body_mass_categories_url, params: { body_mass: bmi }, xhr: true
-    assert_redirected_to body_mass_categories_path
+    assert_response :success
   end
 
   private 
