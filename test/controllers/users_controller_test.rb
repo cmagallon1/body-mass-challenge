@@ -23,13 +23,28 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to body_mass_categories_path
   end
 
-  def test_user_should_not_sign_in_with_invalid_data
+  def test_user_should_not_sign_in_with_invalid_password
     user = create_user
     user[:password] = Faker::Lorem.characters(number: 10)
     post '/signin' , params: { user: user }
-    assert_redirected_to '/signin'  
+    assert_response :success  
   end
+  
+  def test_user_should_sign_in_with_email
+    user = create_user
+    user[:username] = user[:email]
+    post '/signin' , params: { user: user }
+    assert_redirected_to body_mass_categories_path
 
+  end
+  
+  def test_user_should_not_sign_in_with_invalid_username
+    user = create_user
+    user[:username] = Faker::Lorem.characters(number: 10)
+    post '/signin' , params: { user: user }
+    assert_response :success 
+  end
+  
   def test_user_should_log_out
     delete '/logout'
     assert_not is_logged_in?
