@@ -10,9 +10,16 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'pg', '~> 1.2', '>= 1.2.2'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
+
 # Use SCSS for stylesheets
+#gem 'bootstrap', '~> 4.4.1'
+
+#gem 'jquery-rails'
+
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+
 gem 'webpacker', '~> 4.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
@@ -23,6 +30,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'pry', '~> 0.12.2'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -50,6 +58,10 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
+
+group :development, :test do
+  gem 'factory_bot_rails'
+end  
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

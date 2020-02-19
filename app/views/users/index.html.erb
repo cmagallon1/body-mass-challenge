@@ -1,29 +1,28 @@
-<h1><center>Body weight platform</center></h1>
+  <%= render 'navbar' %>
+<div class="container text-center mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="display-4">Body weight platform</h1>
+      <div class="sign-in-up-form">
+        <%= form_with scope: :user, url: "/signin", local: true do |form|%>
+          <h2 class="mb-3">sign in</h2>
+          <div>
+            <%= form.label :username %>
+            <%= form.text_field :username, class: "form-control" %>
+          </div>
+          <div>
+            <%= form.label :password %>
+            <%= form.password_field :password, class: "form-control" %>
+          </div>
 
-<div style="width: 100%; justify-content:center; text-align:center">
-  <%= form_with scope: :user, url: "/signin", local: true do |form|%>
-    <h2>Sing in to use this app</h2>
-
-    <p>
-      <%= form.label :username %><br>
-      <%= form.text_field :username %>
-    </p>
-
-    <p>
-      <%= form.label :password %><br>
-      <%= form.text_field :password %>
-    </p>
-
-    <%= form.submit :"sign in" %><br>
-
-  <% end %>
-
-  <p>
-    <label>If you don't have an account</label><br>
-  </p>
-
-  <%= link_to "sign up here", new_user_path %>
-</div     
-
-  
+          <%= form.submit :"sign in", class: "btn btn-outline-info " %>
+          <div class="pt-3">
+            <label>you don't have an account?</label><br>
+            <%= link_to "sign up here", new_user_path %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 

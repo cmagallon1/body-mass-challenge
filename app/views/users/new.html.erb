@@ -1,25 +1,35 @@
-<div>
-  <h1>Sign up to use this app</h1>
-
-<%= form_with scope: :user, url: users_path, local: true do |form| %>
- <p>
+<%= render "navbar" %>
+<div class="container text-center mt-5">
+  <h1 class"display-4">Sign up</h1>
+  <div class="sign-in-up-form mt-3">
+  <%= form_with scope: :user, url: users_path, local: true do |form| %>
+ <div>
     <%= form.label :name %>
-    <%= form.text_field :name %>
-   </p>
+    <%= form.text_field :name, class: "form-control" %>
+   </div>
 
-   <p>
-      <%= form.label :username %><br>
-      <%= form.text_field :username %>
-    </p>
+   <div>
+      <%= form.label :username %>
+      <div>
+        <%= form.text_field :username, class: "form-control" %>
+        <div class="invalid-feedback">
+          <%= @user.errors.full_messages.select{ |msg|  msg if msg.downcase.match("username") }.join(" and ") %>
+        </div>
+      </div>
+    </div>
 
-    <p>
-      <%= form.label :password %><br>
-      <%= form.text_field :password %>
-    </p>
+    <div>
+      <%= form.label :password %>
+        <%= form.password_field :password, class: "form-control" %>
+        <div class="invalid-feedback">
+          <%= @user.errors.full_messages.select{ |msg|  msg if msg.downcase.match("password") }.join(" and ") %>
+        </div>
+    </div>
 
-  <%= form.submit :"sign up" %><br>
+    <%= form.submit :"sign up", class: "btn btn-outline-info" %><br>
 
 <%end%>
  
 
+  </div>
 </div>
