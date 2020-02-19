@@ -1,0 +1,16 @@
+<%= form_with scope: :body_mass, url: body_mass_categories_url do |form| %>
+  <div class="fields">
+    <div>
+      <%= label_tag(:height, "Height(cm):") %>
+      <%= form.text_field :height, placeholder: "height", value: @height, class: "form-control" %>
+    </div>
+    <div>
+      <%= label_tag(:weight, "weight(kg):") %>
+      <%= form.text_field :weight, placeholder: "weight", value: @weight, class: "form-control"%>
+    </div>
+  </div>
+  <div> 
+    <%= form.submit :calculate, class: "btn btn-outline-info" %><br>
+  </div>
+<% end %>
+
