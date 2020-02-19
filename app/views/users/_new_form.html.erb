@@ -1,0 +1,36 @@
+<%= form_with scope: :user, url: users_path, local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.label :username %>
+    <div>
+      <%= form.text_field :username, class: "form-control" %>
+      <div class="invalid-feedback">
+        <%= @user.errors.full_messages.select{ |msg|  msg if msg.downcase.match("username") }.join(" and ") %>
+      </div>
+    </div>
+  </div>
+  <div>
+    <%= form.label :email %>
+    <div>
+      <%= form.text_field :email, class: "form-control" %>
+      <div class="invalid-feedback">
+        <%= @user.errors.full_messages.select{ |msg|  msg if msg.downcase.match("email") }.join(" and ") %>
+      </div>
+    </div>
+  </div>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password, class: "form-control" %>
+    <div class="invalid-feedback">
+      <%= @user.errors.full_messages.select{ |msg|  msg if msg.downcase.match("password") }.join(" and ") %>
+    </div>
+  </div>
+
+  <%= form.submit :"sign up", class: "btn btn-outline-info" %><br>
+
+<%end%>
+

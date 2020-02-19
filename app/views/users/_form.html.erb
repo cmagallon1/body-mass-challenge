@@ -1,0 +1,18 @@
+<%= form_with scope: :user, url: "/signin", local: true do |form|%>
+  <h2 class="mb-3">sign in</h2>
+  <%= render 'error' if @user == nil %>
+  <div>
+    <%= label_tag(:"user_username", "username or email address") %>
+    <%= form.text_field :username, class: "form-control" %>
+  </div>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password, class: "form-control" %>
+  </div>
+
+  <%= form.submit :"sign in", class: "btn btn-outline-info " %>
+  <div class="pt-3">
+    <label>you don't have an account?</label><br>
+    <%= link_to "sign up here", new_user_path %>
+  </div>
+<% end %>

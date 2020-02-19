@@ -21,12 +21,12 @@ class UsersController < ApplicationController
   end
 
   def signin 
-    @user = User.find_by username: user_params[:username]
+    @user = User.where("username = ? or email = ?", user_params[:username], user_params[:username]).first
     if @user and @user.authenticate(user_params[:password])
       session[:current_user_id] = @user.id
       redirect_to body_mass_categories_path 
     else
-      redirect_to '/signin'
+      render 'index'
     end
   end
   
@@ -41,6 +41,6 @@ class UsersController < ApplicationController
   end
 
   def sign_up_params
-    params.require(:user).permit(:name, :username, :password)
+    params.require(:user).permit(:name, :username, :password, :email)
   end
 end
