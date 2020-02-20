@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  skip_before_action :authorized, only: [:new, :create, :index, :signin, :menu] 
+  skip_before_action :authorized, only: [:new, :create, :index, :signin] 
 
   def index
     @user = User.new
@@ -23,8 +23,7 @@ class UsersController < ApplicationController
   def signin 
     @user = User.where("username = ? or email = ?", user_params[:username], user_params[:username]).first
     if @user and @user.authenticate(user_params[:password])
-      session[:current_user_id] = @user.id
-      redirect_to body_mass_categories_path 
+      save_session(@user)   
     else
       render 'index'
     end
@@ -34,13 +33,18 @@ class UsersController < ApplicationController
     destroy
   end
 
-  private
+ 
+ private
+   def save_session(user)
+      session[:current_user_id] = user.id
+      redirect_to body_mass_categories_path
+   end
 
-  def user_params
-    params.require(:user).permit(:username, :password)
-  end
+   def user_params
+     params.require(:user).permit(:username, :password)
+   end
 
-  def sign_up_params
-    params.require(:user).permit(:name, :username, :password, :email)
-  end
+   def sign_up_params
+     params.require(:user).permit(:name, :username, :password, :email)
+   end
 end
