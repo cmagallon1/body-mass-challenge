@@ -1,4 +1,7 @@
 class BodyMassCategoriesController < ApplicationController
+ 
+  skip_before_action :authorized
+
   def index
     @categoy
   end
