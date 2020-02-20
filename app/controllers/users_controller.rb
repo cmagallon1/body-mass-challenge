@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     
     if @user.save
       render 'index'
-     else 
+    else 
       render 'new'
     end
   end
