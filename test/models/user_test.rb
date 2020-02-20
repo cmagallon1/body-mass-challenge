@@ -38,6 +38,11 @@ class UserTest < ActiveSupport::TestCase
     user = build(:user, email: "")
     assert_not user.save, "User saved without email"
   end
+
+  def test_save_user_with_incorrect_email
+    user = build(:user, email: Faker::Lorem.characters(number: 10))
+    assert_not user.save
+  end
   
   def test_save_user_without_password
     user = build(:user, password: "")

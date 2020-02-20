@@ -7,11 +7,7 @@ Rails.application.routes.draw do
 
   get '/signin', to: 'users#index'
 
-  get '/category', to: 'body_mass_categories#index'
-  
   post '/signin', to: 'users#signin'
-
-  post '/category', to: 'body_mass_categories#create'
 
   delete '/logout', to: 'users#logout'
 
