@@ -33,7 +33,6 @@ class UsersController < ApplicationController
     destroy
   end
 
- 
  private
    def save_session(user)
       session[:current_user_id] = user.id
