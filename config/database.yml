@@ -13,8 +13,6 @@ default: &default
 development:
   <<: *default
   database: 'development_database'
-  username: 'cesar'
-  password: 'camv1998'
   
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,11 +20,9 @@ development:
 test:
   <<: *default
   database: 'test_database'
-  username: 'cesar'
-  password: 'camv1998' 
 
 production:
   <<: *default
-  database: 'production_database'
-  username: 'cesar'
-  password: 'camv1998'
+  url: <%= ENV['DATABASE_URL'] %>
+  username: <%= ENV['USER'] %>
+  password: <%= ENV['PASSWORD'] %>
